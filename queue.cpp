@@ -4,10 +4,13 @@
 
 
 #include "queue.h"
+#include<iostream>
+using namespace std;
+
 
 queue::queue() :head(nullptr),tail(nullptr),size(0){}
 
-queue::queue(std::string &data) {
+queue::queue(char &data) {
     head=tail=new node(data);
     size=1;
 }
@@ -64,20 +67,79 @@ unsigned queue::queueSize() const {
     return size;
 }
 
-std::string queue::top() const {
+char queue::top() const {
     return head->data;
 }
 
-void queue::enqueue(std::string &data) {
-    //step 1 create a new node
-    //step 2 update next of node pointed to by tail with address of new node
-    //step 3 update tail with address of new node
-    //step 4 update size of stack variable
+void queue::enqueue(char &data) {
+        //Create a new node to store the data
+    node *temp = new node(data);
+
+    //Check to see if queue is empty by checking the head & tail pointers
+    if(isEmpty())
+    {
+        //since the queue is empty set this both to the new node!
+        this->head = this->tail = temp;
+        //since this is the first node size will be 1
+        size = 1;
+        return;
+    }
+    else{
+        //IF the queue list is not empty, and both the head & tail pointing to the first node
+        // We use the tail to point to the new node and there after set tail to point the new node!
+        tail->next = temp;
+        tail = temp;
+        //since we are adding a new node, we increment size
+        size++;
+
+        return;
+    }
+
+
 }
 
+//we are removing an item from the front
 void queue::dequeue() {
-    //step 1 store address of current top node (pointed to by head) in a node*
-    //step 2 update head with address of second node
-    //step 3 delete node pointed to by address stored in step 1
-    //step 4 update size of stack variable
+
+    //create a pointer node and have it point where the head is pointing too.
+    node *temp;
+    temp = head;
+
+    //check to see if the list is empty
+    if(isEmpty())
+    {
+        cout<<"Error encountered! The list is empty!"<<endl;
+        size = 0;
+
+        return;
+    }
+    //if head and tail are both equal.. meaning there is only one item in the list
+    else if(head == tail)
+    {
+        //let temp point to the same node head & tail are pointing too.
+        temp = head;
+        //set head and tail pointers to nullptr (list is empty)
+        head = tail = nullptr;
+        //delete the node using delete
+        delete temp;
+
+        //since we deleted the only node size will be zero (list is empty)
+        size--;
+        return;
+    }
+
+    //If there are a lot of nodes in the list ... then remove the node pointed by head
+    else{
+        //let temp point to the same node as head
+        temp = head;
+        //move head to the next node since we will be deleting the leading node
+        head = head->next;
+        //free or delete the leading node pointed by temp.. done!
+        delete temp;
+        //decrement size by one since we removed one node
+        size--;
+
+        return;
+    }
+
 }

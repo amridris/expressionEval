@@ -10,10 +10,10 @@
 
 class node {
 public:
-    std::string data;
+    char data;
     node * next;
 
-    node(const std::string &data);
+    node(const char &data);
 };
 
 

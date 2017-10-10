@@ -16,15 +16,15 @@ class queue {
 
 public:
     queue();
-    queue(std::string& data);
+    queue(char &data);
     queue(const queue& original);
     virtual ~queue();
 
     queue&operator=(const queue& RHS);
     bool isEmpty()const;
     unsigned queueSize() const;
-    std::string top()const;
-    void enqueue(std::string& data);
+    char top()const;
+    void enqueue(char &data);
     void dequeue();
 };
 

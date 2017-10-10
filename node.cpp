@@ -5,4 +5,4 @@
 
 #include "node.h"
 
-node::node(const std::string &data) : data(data), next(nullptr) {}
+node::node(const char &data) : data(data), next(nullptr) {}

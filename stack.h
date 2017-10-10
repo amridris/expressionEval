@@ -15,15 +15,15 @@ class stack {
 
 public:
     stack();
-    stack(std::string& data);
+    stack(char &data);
     stack(const stack& original);
     virtual ~stack();
 
     stack & operator=(const stack& RHS);
     bool isEmpty()const;
     unsigned stackSize() const;
-    std::string top()const;
-    void push(std::string& data);
+    char top()const;
+    void push(char &data);
     void pop();
 };
 

@@ -10,8 +10,9 @@
 #include "stack.h"
 
 class expression {
-    queue infix;
-    queue postfix;
+    stack  operators;
+    queue output;
+    stack infix;
 
 
     void convert_to_postfix(std::string &input_expression);
